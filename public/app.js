@@ -1,3 +1,13 @@
+//adding waveSurfer
+
+var wavesurfer = WaveSurfer.create({
+	container: "#waveform",
+	waveColor: "violet",
+	progressColor: "purple",
+});
+const toggleBtn = document.querySelector("#toggleBtn");
+const audio = document.getElementById("audio");
+
 // getting all the sounds from the node web server file
 
 function getSounds() {
@@ -30,9 +40,34 @@ function getSounds() {
 // Play a sound file by setting the source of the audio element and calling play()
 
 function playSound(soundFile) {
-	const audio = document.getElementById("audio");
+	document.querySelector("footer").style.display = "flex";
 	audio.src = soundFile;
-	audio.play();
+	audio.load();
+	// Check if the sound file is already loaded in Wavesurfer
+	if (wavesurfer.getDuration() === 0) {
+		// If not, load it and wait for it to finish loading before playing
+		wavesurfer.load(soundFile);
+		wavesurfer.on("ready", function () {
+			wavesurfer.play();
+		});
+	} else {
+		// If it's already loaded, just play it
+		wavesurfer.play();
+	}
 }
 
 getSounds();
+
+//ToggleBtn Handler
+toggleBtn.addEventListener("click", () => {
+	if (wavesurfer.isPlaying()) {
+		// Stop Wavesurfer and hide the visualization
+		wavesurfer.pause();
+		toggleBtn.innerHTML = "<span>&#9658;</span>";
+	} else {
+		// Start Wavesurfer and show the visualization
+		toggleBtn.innerHTML = "<span>&#10074;&#10074;</span>";
+
+		wavesurfer.play();
+	}
+});

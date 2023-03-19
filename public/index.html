@@ -5,11 +5,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Sound Board</title>
 		<link rel="stylesheet" href="style.css" />
+		<script src="https://unpkg.com/wavesurfer.js"></script>
 	</head>
 	<body>
-		<h1>Sound Board</h1>
+		<h1>SoundBoard</h1>
 		<ul id="sounds-list"></ul>
 		<audio id="audio"></audio>
+		<footer>
+			<button id="toggleBtn"><span>&#10074;&#10074;</span></button>
+			<div id="waveform"></div>
+		</footer>
+
 		<script src="app.js"></script>
 	</body>
 </html>
