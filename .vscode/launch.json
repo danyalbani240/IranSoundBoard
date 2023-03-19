@@ -1,0 +1,16 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch server.js",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceFolder}/server.js",
+			"cwd": "${workspaceFolder}",
+			"runtimeArgs": ["--inspect"],
+			"env": {
+				"PORT": "3000"
+			}
+		}
+	]
+}
